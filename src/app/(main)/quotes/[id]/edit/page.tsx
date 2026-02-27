@@ -39,7 +39,6 @@ export default async function EditQuotePage({ params }: { params: Promise<{ id: 
   const initialData = {
     id: quote.id,
     customerName: quote.customerName,
-    customerEmail: quote.customerEmail,
     items: quote.items.map((item: any) => ({
       productId: item.productId,
       productName: item.product.name,

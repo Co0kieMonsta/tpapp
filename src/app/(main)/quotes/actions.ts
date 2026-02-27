@@ -15,7 +15,6 @@ const quoteItemSchema = z.object({
 
 const quoteSchema = z.object({
   customerName: z.string().min(1, 'Customer name is required'),
-  customerEmail: z.string().email().optional().or(z.literal('')),
   items: z.array(quoteItemSchema).min(1, 'At least one item is required'),
 })
 
@@ -38,7 +37,6 @@ export async function createQuote(formData: FormData) {
 
   const rawData = {
     customerName: formData.get('customerName'),
-    customerEmail: formData.get('customerEmail'),
     items,
   }
 
@@ -55,7 +53,6 @@ export async function createQuote(formData: FormData) {
     await prisma.quote.create({
       data: {
         customerName: result.data.customerName,
-        customerEmail: result.data.customerEmail || null,
         total,
         userId: user.id,
 
@@ -132,7 +129,6 @@ export async function updateQuote(id: string, formData: FormData) {
 
   const rawData = {
     customerName: formData.get('customerName'),
-    customerEmail: formData.get('customerEmail'),
     items,
   }
 
@@ -155,7 +151,6 @@ export async function updateQuote(id: string, formData: FormData) {
         where: { id },
         data: {
           customerName: result.data.customerName,
-          customerEmail: result.data.customerEmail || null,
           total,
           updatedAt: new Date(),
         },

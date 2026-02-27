@@ -7,7 +7,6 @@ type ExportQuote = {
   id: string
   createdAt: Date
   customerName: string
-  customerEmail: string | null
   total: number
   items: {
     quantity: number
@@ -26,7 +25,6 @@ export function ExportXMLButton({ quote }: { quote: ExportQuote }) {
 <quote id="${quote.id}">
   <header>
     <customerName>${quote.customerName}</customerName>
-    <customerEmail>${quote.customerEmail || ''}</customerEmail>
     <date>${quote.createdAt.toISOString()}</date>
     <total>${quote.total.toFixed(2)}</total>
   </header>

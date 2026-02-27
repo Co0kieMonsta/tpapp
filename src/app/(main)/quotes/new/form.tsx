@@ -33,6 +33,12 @@ export default function NewQuoteForm({ products }: { products: Product[] }) {
 
   // Selection state
   const [selectedProductId, setSelectedProductId] = useState<string>('')
+  const [searchQuery, setSearchQuery] = useState('')
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+
+  const filteredProducts = products.filter(p => 
+    p.name.toLowerCase().includes(searchQuery.toLowerCase())
+  )
 
   const handleAddItem = () => {
     if (!selectedProductId) return
@@ -50,6 +56,7 @@ export default function NewQuoteForm({ products }: { products: Product[] }) {
       }
     ])
     setSelectedProductId('') // Reset selection
+    setSearchQuery('')
   }
 
   const handleRemoveItem = (index: number) => {
@@ -107,7 +114,7 @@ export default function NewQuoteForm({ products }: { products: Product[] }) {
     <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
       <form action={handleSubmit} className="space-y-8">
         {/* Customer Info */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 gap-6">
           <div>
             <label htmlFor="customerName" className="block text-sm font-medium text-gray-700 mb-2">
               Customer Name
@@ -117,21 +124,9 @@ export default function NewQuoteForm({ products }: { products: Product[] }) {
               name="customerName"
               required
               className="block w-full rounded-lg border-gray-400 text-black shadow-sm focus:border-orange-500 focus:ring-orange-500 sm:text-sm px-4 py-3 border"
-              placeholder="e.g. Acme Corp"
+              placeholder="e.g. TP Solutions"
             />
              {error?.customerName && <p className="mt-1 text-sm text-red-600">{error.customerName}</p>}
-          </div>
-          <div>
-            <label htmlFor="customerEmail" className="block text-sm font-medium text-gray-700 mb-2">
-              Customer Email (Optional)
-            </label>
-            <input
-              type="email"
-              name="customerEmail"
-              className="block w-full rounded-lg border-gray-400 text-black shadow-sm focus:border-orange-500 focus:ring-orange-500 sm:text-sm px-4 py-3 border"
-              placeholder="contact@acme.com"
-            />
-             {error?.customerEmail && <p className="mt-1 text-sm text-red-600">{error.customerEmail}</p>}
           </div>
         </div>
 
@@ -142,16 +137,44 @@ export default function NewQuoteForm({ products }: { products: Product[] }) {
           <h3 className="text-lg font-medium text-gray-900 mb-4">Items</h3>
           
           <div className="flex gap-4 mb-6">
-            <select
-              value={selectedProductId}
-              onChange={(e) => setSelectedProductId(e.target.value)}
-              className="block w-full rounded-lg border-gray-400 text-black shadow-sm focus:border-orange-500 focus:ring-orange-500 sm:text-sm px-4 py-3 border"
-            >
-              <option value="">Select a product...</option>
-              {products.map(p => (
-                <option key={p.id} value={p.id}>{p.name} - ${p.sellPrice.toFixed(2)} / {p.unitOfMeasure}</option>
-              ))}
-            </select>
+            <div className="relative w-full">
+              <input
+                type="text"
+                placeholder="Search and select a product..."
+                value={searchQuery}
+                onChange={(e) => {
+                  setSearchQuery(e.target.value)
+                  setSelectedProductId('') // clear selection when typing
+                  setIsDropdownOpen(true)
+                }}
+                onFocus={() => setIsDropdownOpen(true)}
+                onBlur={() => setTimeout(() => setIsDropdownOpen(false), 200)} // delay to allow click on item
+                className="block w-full rounded-lg border-gray-400 text-black shadow-sm focus:border-orange-500 focus:ring-orange-500 sm:text-sm px-4 py-3 border"
+              />
+              {isDropdownOpen && (
+                <ul className="absolute z-10 w-full mt-1 max-h-60 overflow-auto bg-white border border-gray-300 rounded-lg shadow-lg">
+                  {filteredProducts.length > 0 ? (
+                    filteredProducts.map(p => (
+                      <li
+                        key={p.id}
+                        onClick={(e) => {
+                           e.stopPropagation()
+                           setSelectedProductId(p.id)
+                           setSearchQuery(`${p.name} - S/ ${p.sellPrice.toFixed(2)} / ${p.unitOfMeasure}`)
+                           setIsDropdownOpen(false)
+                        }}
+                        className="cursor-pointer px-4 py-3 hover:bg-orange-50 text-sm border-b border-gray-100 last:border-0"
+                      >
+                         <div className="font-medium text-gray-900">{p.name}</div>
+                         <div className="text-gray-500 text-xs mt-1">S/ {p.sellPrice.toFixed(2)} / {p.unitOfMeasure}</div>
+                      </li>
+                    ))
+                  ) : (
+                    <li className="px-4 py-3 text-sm text-gray-500 text-center">No products found</li>
+                  )}
+                </ul>
+              )}
+            </div>
             <button
               type="button"
               onClick={handleAddItem}

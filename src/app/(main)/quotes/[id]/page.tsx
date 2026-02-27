@@ -78,7 +78,6 @@ export default async function QuotePage({ params }: { params: Promise<{ id: stri
           <div>
             <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Bill To</h3>
             <p className="text-lg font-medium text-gray-900">{quote.customerName}</p>
-            {quote.customerEmail && <p className="text-gray-500">{quote.customerEmail}</p>}
           </div>
           <div className="text-right">
             <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Quote Details</h3>

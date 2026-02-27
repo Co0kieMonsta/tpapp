@@ -8,7 +8,6 @@ type ExportQuote = {
   id: string
   createdAt: Date
   customerName: string
-  customerEmail: string | null
   total: number
   items: {
     quantity: number
@@ -28,7 +27,6 @@ export function ExportXLSButton({ quote }: { quote: ExportQuote }) {
       QuoteID: quote.id.slice(0, 8),
       Date: quote.createdAt.toLocaleDateString(),
       Customer: quote.customerName,
-      Email: quote.customerEmail || '',
       Product: item.product.name,
       Description: item.product.description || '',
       Quantity: item.quantity,
