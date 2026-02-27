@@ -3,6 +3,8 @@ import { redirect } from 'next/navigation'
 import prisma from '@/lib/prisma'
 import QuoteForm from '../../form'
 
+export const dynamic = 'force-dynamic'
+
 export default async function EditQuotePage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
   const supabase = await createClient()

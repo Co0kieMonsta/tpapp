@@ -6,6 +6,8 @@ import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import EditProductForm from './form' // We will create this client component
 
+export const dynamic = 'force-dynamic'
+
 export default async function EditProductPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
   const supabase = await createClient()

@@ -5,6 +5,8 @@ import Link from 'next/link'
 import { ArrowLeft, Edit } from 'lucide-react'
 import { DownloadPDFButton } from './download-pdf-button'
 
+export const dynamic = 'force-dynamic'
+
 interface Product {
   id: string
   name: string
