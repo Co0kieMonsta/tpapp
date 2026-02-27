@@ -95,7 +95,7 @@ export default async function QuotePage({ params }: { params: Promise<{ id: stri
           <table className="min-w-full divide-y divide-gray-200">
             <thead>
               <tr>
-                <th className="py-3 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider w-24">CANT.</th>
+                <th className="py-3 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">CANT.</th>
                 <th className="py-3 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider w-24">UNIDAD</th>
                 <th className="py-3 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">DESCRIPCIÓN</th>
                 <th className="py-3 text-right text-xs font-semibold text-gray-400 uppercase tracking-wider">P. UNITARIO</th>
