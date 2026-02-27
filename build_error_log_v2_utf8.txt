@@ -1,0 +1,88 @@
+﻿
+> tps-app@0.1.0 build
+> next build
+
+Γû▓ Next.js 16.1.6 (Turbopack)
+- Environments: .env
+
+node.exe : ΓÜá The 
+"middleware" file 
+convention is 
+deprecated. Please 
+use "proxy" instead. 
+Learn more: https://n
+extjs.org/docs/messag
+es/middleware-to-prox
+y
+At line:1 char:1
++ & "C:\Program Files
+\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo 
+...
++ ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: (ΓÜá The   
+  "middle...lewar    
+e-to-proxy:Strin    
+g) [], RemoteExc    
+eption
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+  Creating an optimized production build ...
+Γ£ô Compiled successfully in 2.2s
+  Running TypeScript ...
+Failed to compile.
+
+./src/app/(main)/quot
+es/[id]/page.tsx:41:1
+1
+Type error: Type 
+'string' is not 
+assignable to type 'M
+ouseEventHandler<HTML
+ButtonElement>'.
+
+[0m [90m 39 |[39m 
+        [33m<[39m[
+33m/[39m[33mLink[3
+9m[33m>[39m
+ [90m 40 |[39m     
+    [33m<[39m[33mb
+utton[39m
+[31m[1m>[22m[39m
+[90m 41 |[39m       
+    onClick[33m=[39
+m[32m"window.print()
+"[39m 
+ [90m    |[39m     
+      
+[31m[1m^[22m[39m
+ [90m 42 |[39m     
+      className[33m=
+[39m[32m"flex 
+items-center gap-2 
+px-4 py-2 
+bg-orange-600 
+text-white 
+rounded-lg 
+hover:bg-orange-700 t
+ransition-colors"[39
+m
+ [90m 43 |[39m     
+    [33m>[39m
+ [90m 44 |[39m     
+      [33m<[39m[33
+mPrinter[39m classNa
+me[33m=[39m[32m"h-
+4 w-4"[39m [33m/[3
+9m[33m>[39m[0m
+Next.js build worker 
+exited with code: 1 
+and signal: null

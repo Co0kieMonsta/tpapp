@@ -1,0 +1,88 @@
+﻿
+> tps-app@0.1.0 build
+> next build
+
+Γû▓ Next.js 16.1.6 (Turbopack)
+- Environments: .env
+
+node.exe : ΓÜá The 
+"middleware" file 
+convention is 
+deprecated. Please 
+use "proxy" instead. 
+Learn more: https://n
+extjs.org/docs/messag
+es/middleware-to-prox
+y
+At line:1 char:1
++ & "C:\Program Files
+\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo 
+...
++ ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: (ΓÜá The   
+  "middle...lewar    
+e-to-proxy:Strin    
+g) [], RemoteExc    
+eption
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+  Creating an optimized production build ...
+Γ£ô Compiled successfully in 2.2s
+  Running TypeScript ...
+Failed to compile.
+
+./src/app/(main)/prod
+ucts/[id]/edit/page.t
+sx:2:31
+Type error: Cannot 
+find module 
+'../actions' or its 
+corresponding type 
+declarations.
+
+[0m [90m 1 |[39m 
+[36mimport[39m { [
+33mPrismaClient[39m 
+} [36mfrom[39m [32
+m'@prisma/client'[39
+m
+[31m[1m>[22m[39m
+[90m 2 |[39m 
+[36mimport[39m { 
+updateProduct } 
+[36mfrom[39m [32m'
+../actions'[39m
+ [90m   |[39m      
+                     
+    
+[31m[1m^[22m[39m
+ [90m 3 |[39m 
+[36mimport[39m { [
+33mSubmitButton[39m 
+} [36mfrom[39m [32
+m'../submit-button'[
+39m
+ [90m 4 |[39m 
+[36mimport[39m { 
+createClient } 
+[36mfrom[39m [32m'
+@/utils/supabase/serv
+er'[39m
+ [90m 5 |[39m 
+[36mimport[39m { 
+redirect } 
+[36mfrom[39m [32m'
+next/navigation'[39m
+[0m
+Next.js build worker 
+exited with code: 1 
+and signal: null

@@ -1,0 +1,47 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// Profile removed to simplify Supabase Auth integration.
+// access auth.users directly via Supabase client if needed, or store basic info in local row.
+
+model Product {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  sellPrice   Float
+  buyPrice    Float    @default(0)
+  unitOfMeasure String @default("each")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  userId      String   // Links to Supabase Auth User ID
+  quoteItems  QuoteItem[]
+}
+
+model Quote {
+  id            String      @id @default(uuid())
+  customerName  String
+  customerEmail String?
+
+  total         Float
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  userId        String      // Links to Supabase Auth User ID
+  items         QuoteItem[]
+}
+
+model QuoteItem {
+  id        String  @id @default(uuid())
+  quoteId   String
+  quote     Quote   @relation(fields: [quoteId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  quantity  Int
+  priceAtQuote Float
+}
